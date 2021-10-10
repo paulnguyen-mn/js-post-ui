@@ -1,0 +1,102 @@
+.posts-section {
+  padding: 3rem 0;
+}
+
+.posts-section .post-item .card-title {
+  color: var(--primary-color);
+}
+
+/* Add box shadow on card hover */
+.posts-section .post-item:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* Zoom card image when hover on card */
+.posts-section .post-item {
+  overflow: hidden;
+}
+.posts-section .post-item .card-img-top {
+  height: 200px;
+  width: auto;
+  transition: all 0.5s;
+}
+.posts-section .post-item:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+/* Show menu on card hover */
+.posts-section .post-item {
+  position: relative;
+}
+
+.posts-section .post-item .post-item-menu {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .posts-section .post-item .post-item-menu {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  .posts-section .post-item:hover .post-item-menu {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.posts-section .post-item-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  transition: all 0.5s;
+  transform: scale(0.5);
+  transform-origin: top;
+  opacity: 0;
+}
+
+.posts-section .post-item-menu .menu-item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #444;
+
+  transition: all 0.35s;
+  opacity: 0.7;
+}
+
+.posts-section .post-item-menu .menu-item:hover {
+  color: white;
+  background-color: black;
+  opacity: 1;
+}
+
+/**************
+  POSTS NAV
+*/
+
+/* Use primary color for page link */
+.posts-nav .page-item.active .page-link {
+  color: white;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.posts-nav .page-item .page-link {
+  color: #444;
+}
+
+/* Change color for page link if page item is not active */
+.posts-nav .page-item:not(.active) .page-link:hover {
+  color: var(--primary-color);
+}

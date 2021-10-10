@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Make footer always at bottom of our screen */
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+
+  font-family: "Rubik", sans-serif;
+}
+
+body > main {
+  flex: 1 1 auto;
+}
+
+:root {
+  --primary-color: #dc1b1b;
+}
+
+/* Override link style */
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+  opacity: 0.8;
+}
+
+a > i {
+  transition: all 0.25s;
+}
+
+a:hover > i {
+  transform: rotate(90deg);
+}
+
+/* Add underline for all h1 */
+h1.with-underline {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+h1.with-underline::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+
+  width: 5rem;
+  height: 0.25rem;
+  margin: 0 auto;
+  border-radius: 0.25rem;
+
+  background-color: #444;
+}
+
+/* Reset ul style */
+ul {
+  list-style-type: none;
+}
+
+::placeholder {
+  font-style: italic;
+}
+
+.nav .nav__logo {
+  height: 40px;
+  width: auto;
+}
