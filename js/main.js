@@ -8,6 +8,8 @@ async function main() {
     }
     const data = await postApi.getAll(queryParams)
     console.log('main.js data', data)
+
+    // getAllCities()
   } catch (error) {
     console.log('get all failed', error)
     // show modal, toast error
