@@ -147,16 +147,6 @@ function initPagination() {
   }
 }
 
-function initURL() {
-  const url = new URL(window.location)
-
-  // update search params if needed
-  if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1)
-  if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6)
-
-  history.pushState({}, '', url)
-}
-
 function initSearch() {
   const searchInput = document.getElementById('searchInput')
   if (!searchInput) return
@@ -177,15 +167,18 @@ function initSearch() {
 
 ;(async () => {
   try {
-    // attach click event for links
-    initPagination()
-    initSearch()
+    const url = new URL(window.location)
 
-    // set default pagination (_page, _limit) on URL
-    initURL()
+    // update search params if needed
+    if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1)
+    if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6)
 
-    // render post list based URL params
-    const queryParams = new URLSearchParams(window.location.search)
+    history.pushState({}, '', url)
+    const queryParams = url.searchParams
+
+    initPagination(queryParams)
+    initSearch(queryParams)
+
     const { data, pagination } = await postApi.getAll(queryParams)
     renderPostList(data)
     renderPagination(pagination)
