@@ -143,7 +143,7 @@ function initPagination() {
   }
 }
 
-function initURL() {
+function getDefaultQueryParams() {
   const url = new URL(window.location)
 
   // update search params if needed
@@ -151,11 +151,15 @@ function initURL() {
   if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6)
 
   history.pushState({}, '', url)
+  return url.searchParams
 }
 
-function initSearchInput() {
+function initSearchInput(queryParams) {
   const searchInput = document.getElementById('searchInput')
   if (!searchInput) return
+
+  // set default value
+  searchInput.value = queryParams.get('title_like')
 
   const debounceSearch = debounce(
     (event) => handleFilterChange('title_like', event.target.value),
@@ -164,17 +168,16 @@ function initSearchInput() {
   searchInput.addEventListener('input', debounceSearch)
 }
 
+// filter flow
+// filter change --> do something
 ;(async () => {
   try {
+    const queryParams = getDefaultQueryParams()
+
     // attach click event for links
-    initPagination()
-    initSearchInput()
+    initPagination(queryParams)
+    initSearchInput(queryParams)
 
-    // set default pagination (_page, _limit) on URL
-    initURL()
-
-    // render post list based URL params
-    const queryParams = new URLSearchParams(window.location.search)
     const { data, pagination } = await postApi.getAll(queryParams)
     renderPostList(data)
     renderPagination(pagination)
