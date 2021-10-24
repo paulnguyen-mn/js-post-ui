@@ -1,29 +1,10 @@
 import dayjs from 'dayjs'
 import postApi from './api/postApi'
-import { setTextContent } from './utils'
-
-// id="goToEditPageLink"
-// id="postHeroImage"
-// id="postDetailTitle"
-// id="postDetailAuthor"
-// id="postDetailTimeSpan"
-// id="postDetailDescription"
-
-// author: "Dustin Moore"
-// createdAt: 1633700485641
-// description: "ipsum iusto officiis rerum quidem minus earum minus eum dolorum numquam qui eveniet quisquam ipsa vero enim deleniti et numquam voluptatibus dolorum excepturi eius autem labore quo quo quo in consequuntur veniam consequatur aperiam in voluptas aliquid assumenda enim quo autem rerum consequatur ut consequatur sint nulla nostrum non beatae"
-// id: "sktwi1cgkkuif36ef"
-// imageUrl: "https://picsum.photos/id/960/1368/400"
-// title: "Molestiae tempora voluptatibus"
-// updatedAt: 1633700485641
+import { registerLightbox, setTextContent } from './utils'
 
 function renderPostDetail(post) {
   if (!post) return
 
-  // render title
-  // render description
-  // render author
-  // render updatedAt
   setTextContent(document, '#postDetailTitle', post.title)
   setTextContent(document, '#postDetailDescription', post.description)
   setTextContent(document, '#postDetailAuthor', post.author)
@@ -53,6 +34,8 @@ function renderPostDetail(post) {
 }
 
 ;(async () => {
+  registerLightbox()
+
   // get post id from URL
   // fetch post detail API
   // render post detail
