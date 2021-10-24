@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import postApi from './api/postApi'
 import { setTextContent } from './utils'
+import { registerLightbox } from './utils/lightbox'
 
 // id="goToEditPageLink"
 // id="postHeroImage"
@@ -66,6 +67,13 @@ function renderPostDetail(post) {
 
     const post = await postApi.getById(postId)
     renderPostDetail(post)
+
+    registerLightbox({
+      modalId: 'lightbox',
+      imgSelector: '#currentImage',
+      prevSelector: '#prev',
+      nextSelector: '#next',
+    })
   } catch (error) {
     console.log('failed to fetch post detail', error)
   }
