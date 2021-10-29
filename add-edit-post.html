@@ -72,7 +72,7 @@
             </div>
 
             <form id="postForm" class="post-form">
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postTitle">Title</label>
                 <input
                   type="text"
@@ -85,7 +85,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postAuthor">Author</label>
                 <input
                   type="text"
@@ -96,20 +96,58 @@
                 <div class="invalid-feedback">Please enter author of this post!</div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postDescription">Description</label>
                 <textarea class="form-control" name="description" rows="3"></textarea>
               </div>
 
-              <div class="form-group">
+              <div class="mb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="imageSource"
+                    id="imageSourcePicsum"
+                    value="picsum"
+                    checked
+                  />
+                  <label class="form-check-label" for="imageSourcePicsum">
+                    Random Image using Picsum.Photos
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="imageSource"
+                    id="imageSourceUpload"
+                    value="upload"
+                  />
+                  <label class="form-check-label" for="imageSourceUpload">
+                    Upload image manually
+                  </label>
+                </div>
+              </div>
+
+              <div data-id="imageSource" data-image-source="picsum" class="form-group mb-3">
                 <label for="postChangeImage">Image</label>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   We&apos;re using
                   <a href="https://picsum.photos">Picsum service</a> to get a random image.
                 </small>
-                <button type="button" id="postChangeImage" class="btn btn-dark">
+                <button type="button" data-id="randomImage" class="btn btn-dark">
                   Change post image
                 </button>
+
+                <input hidden type="text" name="imageUrl" />
+                <div class="invalid-feedback">Please enter author of this post!</div>
+              </div>
+
+              <div data-id="imageSource" data-image-source="upload" hidden class="input-group mb-3">
+                <input type="file" class="form-control" id="uploadFile" name="image" />
+                <label class="input-group-text" for="uploadFile">Upload</label>
+                <div class="invalid-feedback">upload file failed</div>
               </div>
 
               <div class="text-center">
@@ -126,5 +164,6 @@
     </footer>
 
     <!-- Scripts should be placed here to prevent blocking render UI -->
+    <script type="module" src="/js/add-edit-post.js"></script>
   </body>
 </html>
