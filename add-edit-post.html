@@ -72,7 +72,7 @@
             </div>
 
             <form id="postForm" class="post-form">
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postTitle">Title</label>
                 <input
                   type="text"
@@ -85,7 +85,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postAuthor">Author</label>
                 <input
                   type="text"
@@ -96,20 +96,25 @@
                 <div class="invalid-feedback">Please enter author of this post!</div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postDescription">Description</label>
                 <textarea class="form-control" name="description" rows="3"></textarea>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="postChangeImage">Image</label>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   We&apos;re using
                   <a href="https://picsum.photos">Picsum service</a> to get a random image.
                 </small>
-                <button type="button" id="postChangeImage" class="btn btn-dark">
-                  Change post image
-                </button>
+
+                <input type="hidden" name="imageUrl" />
+
+                <div>
+                  <button type="button" id="postChangeImage" class="btn btn-dark">
+                    Change post image
+                  </button>
+                </div>
               </div>
 
               <div class="text-center">
