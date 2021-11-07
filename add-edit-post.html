@@ -71,7 +71,7 @@
               </p>
             </div>
 
-            <form id="postForm" class="post-form">
+            <form id="postForm" class="post-form" novalidate>
               <div class="form-group mb-3">
                 <label for="postTitle">Title</label>
                 <input
@@ -79,6 +79,7 @@
                   class="form-control"
                   name="title"
                   placeholder="Eg: Learning JS is fun"
+                  required
                 />
                 <div class="invalid-feedback">
                   Ooops! Please write a nice title for your post &gt;.&lt;
@@ -92,6 +93,8 @@
                   class="form-control"
                   name="author"
                   placeholder="Eg: Paul Nguyen"
+                  required
+                  maxlength="10"
                 />
                 <div class="invalid-feedback">Please enter author of this post!</div>
               </div>
