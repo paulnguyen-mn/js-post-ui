@@ -111,6 +111,7 @@
                     name="imageSource"
                     id="imageSourcePicsum"
                     checked
+                    value="picsum"
                   />
                   <label class="form-check-label" for="imageSourcePicsum">
                     Random image using picsum.photos
@@ -123,6 +124,7 @@
                     type="radio"
                     name="imageSource"
                     id="imageSourceUpload"
+                    value="upload"
                   />
                   <label class="form-check-label" for="imageSourceUpload">
                     Upload image from your computer
@@ -130,7 +132,7 @@
                 </div>
               </div>
 
-              <div class="form-group mb-3">
+              <div class="form-group mb-3" data-id="imageSource" data-image-source="picsum">
                 <label for="postChangeImage">Image</label>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   We&apos;re using
@@ -148,7 +150,7 @@
                 <div class="invalid-feedback"></div>
               </div>
 
-              <div class="input-group mb-3">
+              <div class="input-group mb-3" data-id="imageSource" data-image-source="upload" hidden>
                 <input name="image" type="file" class="form-control" id="uploadImage" />
                 <label class="input-group-text" for="uploadImage">Upload</label>
               </div>
