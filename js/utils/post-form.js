@@ -1,4 +1,4 @@
-import { setBackgroundImage, setTextContent } from '.'
+import { randomNumber, setBackgroundImage, setTextContent } from '.'
 import { setFieldValue } from './common'
 import * as yup from 'yup'
 
@@ -41,6 +41,10 @@ function getPostSchema() {
         (value) => value.split(' ').filter((x) => !!x && x.length >= 3).length >= 2
       ),
     description: yup.string(),
+    imageUrl: yup
+      .string()
+      .required('Please random a background image')
+      .url('Please enter a valid URL'),
   })
 }
 
@@ -55,7 +59,7 @@ function setFieldError(form, name, error) {
 async function validatePostForm(form, formValues) {
   try {
     // reset previous errors
-    ;['title', 'author'].forEach((name) => setFieldError(form, name, ''))
+    ;['title', 'author', 'imageUrl'].forEach((name) => setFieldError(form, name, ''))
 
     // start validating
     const schema = getPostSchema()
@@ -99,12 +103,27 @@ function hideLoading(form) {
   }
 }
 
+function initRandomImage(form) {
+  const randomButton = document.getElementById('postChangeImage')
+  if (!randomButton) return
+
+  randomButton.addEventListener('click', () => {
+    const imageUrl = `https://picsum.photos/id/${randomNumber(1000)}/1368/400`
+
+    setFieldValue(form, '[name="imageUrl"]', imageUrl) // hidden field
+    setBackgroundImage(document, '#postHeroImage', imageUrl)
+  })
+}
+
 export function initPostForm({ formId, defaultValues, onSubmit }) {
   const form = document.getElementById(formId)
   if (!form) return
 
   let submitting = false
   setFormValues(form, defaultValues)
+
+  // init events
+  initRandomImage(form)
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -123,10 +142,9 @@ export function initPostForm({ formId, defaultValues, onSubmit }) {
     // if valid trigger submit callback
     // otherwise, show validation errors
     const isValid = await validatePostForm(form, formValues)
-    if (!isValid) return
+    if (isValid) await onSubmit?.(formValues)
 
-    await onSubmit?.(formValues)
-
+    // always hide loading no matter form is valid or not
     hideLoading(form)
     submitting = false
   })
